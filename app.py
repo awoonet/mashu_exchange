@@ -1,3 +1,4 @@
+from os import getenv as env
 import requests
 import json
 
@@ -10,12 +11,13 @@ flag = {"UAH": "🇺🇦", "USD": "🇺🇸", "EUR": "🇪🇺", "RUB": "🇷�
 rates = {}
 date = ""
 
-api_id = 930791
-api_hash = "cfe0d80d2649b68284cb101483a87652"
-bot_token = "1819158364:AAGgNfcQL-7JnDgaJyhnS_ZmbeU8XGCv6TE"
 
-
-app = Client(":memory:", api_id, api_hash, bot_token=bot_token)
+app = Client(
+    ":memory:",
+    api_id=env("API_ID"),
+    api_hash=env("API_HASH"),
+    bot_token=env("BOT_TOKEN"),
+)
 
 
 def require_rates():
