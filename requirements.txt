@@ -1,8 +1,6 @@
 #Pyrogram
-async-lru==1.0.2
-pyaes==1.6.1
+wheel
 Pyrogram==1.1.13
-PySocks==1.7.1
 TgCrypto==1.2.2
 requests
 apscheduler
