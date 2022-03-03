@@ -29,6 +29,7 @@ def require_rates():
         for i in information:
             if i["cc"] in flag.keys():
                 rates[i["cc"]] = i["rate"]
+    print("Rates acquired!")
 
 
 require_rates()
