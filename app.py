@@ -13,7 +13,7 @@ date = ""
 
 
 app = Client(
-    ":memory:",
+    "session/mashu",
     api_id=env("API_ID"),
     api_hash=env("API_HASH"),
     bot_token=env("BOT_TOKEN"),
@@ -67,15 +67,14 @@ def reply_to_message(func):
 
 @app.on_message(filters.command(["uah", "UAH"]))
 @reply_to_message
-def uah(msg, num):
+def uah(_, num):
     return "UAH", num
 
 
-@app.on_message(
-    filters.command(
-        ["usd", "USD", "eur", "EUR", "rub", "RUB", "byn", "BYN", "pln", "PLN"]
-    )
-)
+currencies = ["usd", "USD", "eur", "EUR", "rub", "RUB", "byn", "BYN", "pln", "PLN"]
+
+
+@app.on_message(filters.command(currencies))
 @reply_to_message
 def foreign(msg, num):
     cur = msg.command[0].upper()
@@ -83,8 +82,8 @@ def foreign(msg, num):
 
 
 @app.on_message(filters.command(["date"]))
-def datefunc(app, msg):
-    msg.reply(f"Курсы валют на: {date}")
+def datefunc(_, msg):
+    msg.reply(f"Курсы валют доступны на дату: {date}")
 
 
 def results(num):
